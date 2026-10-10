@@ -4,6 +4,8 @@
 
 using namespace std;
 const int SIZE = 3;
+const int MIN = 10000;
+const int Max = 99999;
 
 class Chair {
 private:
@@ -15,13 +17,13 @@ public:
         prices = new double[SIZE];
         legs = 0;
         for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+            prices[i] = (rand() % (Max-MIN+1) + MIN) /(double) 100;
     }
-    Chair(int l) {
+    Chair(int l, double p[]) {
         prices = new double[SIZE];
         legs = l;
         for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+            prices[i] = p[i];
     }
 
     // setters and getters
@@ -50,6 +52,7 @@ public:
 };
 
 int main() {
+    srand(time(0));
     cout << fixed << setprecision(2);
 
     //creating pointer to first chair object
