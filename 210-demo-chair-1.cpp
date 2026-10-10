@@ -17,7 +17,7 @@ public:
     // constructors
     Chair() {
         prices = new double[SIZE];
-        legs = rand() % 2 + 3;
+        legs = rand() % (4-3+1) + 3;
         for (int i = 0; i < SIZE; i++)
             prices[i] = (rand() % (Max-MIN+1) + MIN) /(double) 100;
     }
@@ -47,8 +47,8 @@ public:
         cout << "CHAIR DATA - legs: " << legs << endl;
         cout << "Price history: " ;
         for (int i = 0; i < SIZE; i++)
-            cout << prices[i] << " ";
-        cout << endl << "Historical avg price: " << getAveragePrices();
+            cout << "$" << prices[i] << " ";
+        cout << endl << "Historical avg price: $" << getAveragePrices();
         cout << endl << endl;
     }
 };
@@ -63,17 +63,18 @@ int main() {
     chairPtr->setPrices(121.21, 232.32, 414.14);
     chairPtr->print();
 
-    //creating dynamic chair object with constructor
+    //creating dynamic chair object with constructor. This chair object's price history is provided by the program
     double priceArray[SIZE] = {12.50, 13.50, 14.50};
     Chair *livingChair = new Chair(3, priceArray);
     livingChair->print();
     delete livingChair;
     livingChair = nullptr;
 
-    //creating dynamic array of chair objects
+    //creating dynamic array of chair objects that each use the default constructor to populate their data
     Chair *collection = new Chair[SIZE];
-    for (int i = 0; i < SIZE; i++)
-        collection[i].print();
-    
+    for (int i = 0; i < SIZE; i++){
+        collection[i].print(); }
+    delete[] collection;
+    delete chairPtr;
     return 0;
 }
