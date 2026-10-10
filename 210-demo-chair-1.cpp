@@ -1,6 +1,8 @@
 //Lab 20 | COMSC 210 | Ismael Hadi
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 const int SIZE = 3;
@@ -15,7 +17,7 @@ public:
     // constructors
     Chair() {
         prices = new double[SIZE];
-        legs = 0;
+        legs = rand() % 2 + 3;
         for (int i = 0; i < SIZE; i++)
             prices[i] = (rand() % (Max-MIN+1) + MIN) /(double) 100;
     }
@@ -62,20 +64,14 @@ int main() {
     chairPtr->print();
 
     //creating dynamic chair object with constructor
-    Chair *livingChair = new Chair(3);
-    livingChair->setPrices(525.25, 434.34, 252.52);
+    double priceArray[SIZE] = {12.50, 13.50, 14.50};
+    Chair *livingChair = new Chair(3, priceArray);
     livingChair->print();
     delete livingChair;
     livingChair = nullptr;
 
     //creating dynamic array of chair objects
     Chair *collection = new Chair[SIZE];
-    collection[0].setLegs(4);
-    collection[0].setPrices(441.41, 552.52, 663.63);
-    collection[1].setLegs(4);
-    collection[1].setPrices(484.84, 959.59, 868.68);
-    collection[2].setLegs(4);
-    collection[2].setPrices(626.26, 515.15, 757.57);
     for (int i = 0; i < SIZE; i++)
         collection[i].print();
     
